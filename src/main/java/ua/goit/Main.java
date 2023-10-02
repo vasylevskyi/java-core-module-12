@@ -31,7 +31,7 @@ public class Main {
             public void run() {
                 while (!isInterrupted()) {
                     try {
-                        System.out.println("new Date() = " + new Date());
+                        System.out.println("From programm start " + ((new Date()).getTime() - runDate.getTime()) / 1000 + " seconds passed");
                         Thread.sleep(1000);
 
                     } catch (InterruptedException e) {
