@@ -26,7 +26,7 @@ public class ThreadTask {
         });
         Thread fizzBuzz = new Thread(() -> {
             try {
-                buzz();
+                fizzBuzz();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
