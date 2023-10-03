@@ -9,37 +9,13 @@ public class ThreadTask {
     }
 
 
-    public void run() {
-        Thread fizz = new Thread(() -> {
-            try {
-                fizz();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        Thread buzz = new Thread(() -> {
-            try {
-                buzz();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        Thread fizzBuzz = new Thread(() -> {
-            try {
-                fizzBuzz();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        fizz.start();
-        buzz.start();
-        fizzBuzz.start();
-
-    }
-
     public synchronized void fizz() throws InterruptedException {
         while (counter <= value) {
-            if (counter % 3 == 0) {
+            if (counter % 3 == 0 && counter % 5 != 0) {
+                System.out.print("fizz, ");
+                counter++;
+                notifyAll();
+            } else if (counter == value ) {
                 System.out.print("fizz");
                 counter++;
                 notifyAll();
@@ -47,12 +23,15 @@ public class ThreadTask {
                 wait();
             }
         }
-
     }
 
     public synchronized void buzz() throws InterruptedException {
         while (counter <= value) {
-            if (counter % 5 == 0) {
+            if (counter % 5 == 0 && counter % 3 != 0) {
+                System.out.print("buzz, ");
+                counter++;
+                notifyAll();
+            } else if (counter == value ) {
                 System.out.print("buzz");
                 counter++;
                 notifyAll();
@@ -66,7 +45,28 @@ public class ThreadTask {
     public synchronized void fizzBuzz() throws InterruptedException {
         while (counter <= value) {
             if (counter % 3 == 0 && counter % 5 == 0) {
-                System.out.print("fizzBuzz");
+                System.out.print("fizzBuzz, ");
+                counter++;
+                notifyAll();
+            } else if (counter == value ) {
+                    System.out.print("fizzBuzz");
+                    counter++;
+                    notifyAll();
+            } else {
+                wait();
+            }
+        }
+
+    }
+
+    public synchronized void number() throws InterruptedException {
+        while (counter <= value) {
+            if (counter % 3 != 0 && counter % 5 != 0) {
+                System.out.print(counter + ", ");
+                counter++;
+                notifyAll();
+            } else if (counter == value ) {
+                System.out.print(counter);
                 counter++;
                 notifyAll();
             } else {

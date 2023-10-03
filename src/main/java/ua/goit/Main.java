@@ -1,6 +1,7 @@
 package ua.goit;
 
 import java.util.Date;
+import java.util.function.IntConsumer;
 
 /*Завдання 1
 Напишіть програму, яка кожну секунду відображає на екрані дані про час, що минув від моменту запуску програми.
@@ -67,22 +68,40 @@ public class Main {
 
 //      Task 2
         int number = 15;
-        ThreadTask threadTask = new ThreadTask(15);
-        threadTask.run();
+//        FizzBuzz fizzBuzz = new FizzBuzz(number);
 
+        ThreadTask threadTask = new ThreadTask(number);
 
+        new Thread(() -> {
+            try {
+                threadTask.fizz();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
 
+        new Thread(() -> {
+            try {
+                threadTask.buzz();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+        new Thread(() -> {
+            try {
+                threadTask.fizzBuzz();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
 
-
-
-
-
-
-
-
-
-
-
+        new Thread(() -> {
+            try {
+                threadTask.number();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
 
 
     }
