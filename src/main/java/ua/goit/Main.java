@@ -25,13 +25,15 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
+/*
         Date runDate = new Date();
         Thread timePassed = new Thread() {
             @Override
             public void run() {
                 while (!isInterrupted()) {
                     try {
-                        System.out.println("From programm start " + ((new Date()).getTime() - runDate.getTime()) / 1000 + " seconds passed");
+                        System.out.println("From program start " +
+                                ((new Date()).getTime() - runDate.getTime()) / 1000 + " seconds passed");
                         Thread.sleep(1000);
 
                     } catch (InterruptedException e) {
@@ -61,6 +63,26 @@ public class Main {
 
         timePassed.stop();
         passed5Seconds.stop();
+*/
+
+//      Task 2
+        int number = 15;
+        ThreadTask threadTask = new ThreadTask(15);
+        threadTask.run();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
